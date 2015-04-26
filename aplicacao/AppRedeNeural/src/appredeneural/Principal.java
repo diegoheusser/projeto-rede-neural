@@ -5,12 +5,13 @@
  */
 package appredeneural;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
@@ -18,25 +19,12 @@ import javafx.stage.Stage;
  * @author Diego Heusser
  */
 public class Principal extends Application {
-    
+
     @Override
-    public void start(Stage primaryStage) {
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-            }
-        });
-        
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-        
-        Scene scene = new Scene(root, 300, 250);
-        
-        primaryStage.setTitle("Hello World!");
+    public void start(Stage primaryStage) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("visao/tela-principal.fxml"));
+        Scene scene = new Scene(root, 600, 450);
+        primaryStage.setTitle("Trabalho de Rede Neural");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -47,5 +35,5 @@ public class Principal extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }

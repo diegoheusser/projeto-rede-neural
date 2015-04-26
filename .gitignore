@@ -1,5 +1,3 @@
-/build
-/dist
 *.class
 
 # Mobile Tools for Java (J2ME)
@@ -59,18 +57,7 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
-aplicacao/AppRedeNeural/nbproject/private/private.properties
-aplicacao/AppRedeNeural/nbproject/private/configs/Executar_no_Browser.properties
-aplicacao/AppRedeNeural/nbproject/private/configs/Executar_como_WebStart.properties
-aplicacao/AppRedeNeural/build/built-jar.properties
-aplicacao/AppRedeNeural/dist/AppRedeNeural.html
-aplicacao/AppRedeNeural/dist/AppRedeNeural.jnlp
-aplicacao/AppRedeNeural/dist/web-files/dtjava.js
-aplicacao/AppRedeNeural/dist/web-files/error.png
-aplicacao/AppRedeNeural/dist/web-files/get_java.png
-aplicacao/AppRedeNeural/dist/web-files/get_javafx.png
-aplicacao/AppRedeNeural/dist/web-files/javafx-chrome.png
-aplicacao/AppRedeNeural/dist/web-files/javafx-loading-100x100.gif
-aplicacao/AppRedeNeural/dist/web-files/javafx-loading-25x25.gif
-aplicacao/AppRedeNeural/dist/web-files/upgrade_java.png
-aplicacao/AppRedeNeural/dist/web-files/upgrade_javafx.png
+
+build
+dist
+private
