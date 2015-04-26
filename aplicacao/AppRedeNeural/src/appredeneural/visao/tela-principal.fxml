@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import java.util.*?>
@@ -7,8 +9,21 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appredeneural.controle.TelaPrincipal">
-    <stylesheets>
-        <URL value="@/appredeneural/visao/css/tela-principal.css"/>
-    </stylesheets>
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appredeneural.controle.TelaPrincipal">
+   <children>
+      <Pane layoutX="14.0" layoutY="14.0" prefHeight="339.0" prefWidth="572.0" style="-fx-background-color: white; -fx-border-color: lightgray; -fx-border-width: 1; -fx-border-radius: 5; -fx-background-radius: 5;">
+         <children>
+            <Canvas fx:id="canvas" height="339.0" width="572.0" />
+         </children></Pane>
+      <Button fx:id="btIdentificar" layoutX="14.0" layoutY="364.0" mnemonicParsing="false" text="Identificar">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="btLimpar" layoutX="106.0" layoutY="364.0" mnemonicParsing="false" text="Limpar">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+   </children>
 </AnchorPane>
