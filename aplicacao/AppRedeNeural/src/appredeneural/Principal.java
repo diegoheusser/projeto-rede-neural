@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author
+ * @author Eder
  */
 public class Principal extends Application {
 
