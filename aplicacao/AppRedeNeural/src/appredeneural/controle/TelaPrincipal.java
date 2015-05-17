@@ -54,9 +54,6 @@ public class TelaPrincipal implements Initializable {
     @FXML
     private Button btLimpar;
 
-    @FXML
-    private Button btTreinar;
-
     private GraphicsContext gc;
     private double[] inputs;
     private String name;
@@ -104,100 +101,6 @@ public class TelaPrincipal implements Initializable {
             salvar();
         });
 
-        btTreinar.setOnAction((ActionEvent event) -> {
-            try {
-                salvarArquivoTreinamento();
-            } catch (IOException ex) {
-                Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
-    }
-
-    private void salvarArquivoTreinamento() throws IOException {
-        String opcao = ask();
-
-        File file = new File("imagemDesenhada.png");
-
-        if (file != null) {
-            try {
-                int width = (int) canvas.getWidth();
-                int height = (int) canvas.getHeight();
-                WritableImage writableImage = new WritableImage(width, height);
-                canvas.snapshot(null, writableImage);
-                RenderedImage renderedImage = SwingFXUtils.fromFXImage(writableImage, null);
-                ImageIO.write(renderedImage, "png", file);
-            } catch (IOException ex) {
-            }
-        }
-        //Pegando o caminho da imagem
-        String caminhoImagem = file.getPath();
-
-        Mat img = Highgui.imread(caminhoImagem);
-        Mat imgFiltrada = new Mat();
-        Mat imgCinza = new Mat();
-        Mat imgSegmentada = new Mat();
-        Imgproc.blur(img, imgFiltrada, new Size(1, 1));
-        Imgproc.cvtColor(imgFiltrada, imgCinza, Imgproc.COLOR_RGB2GRAY);
-        Imgproc.threshold(imgCinza, imgSegmentada, 10, 245, Imgproc.THRESH_BINARY_INV);
-        Highgui.imwrite("imagemSegmentada.jpg", imgSegmentada);
-        java.util.List<MatOfPoint> contornos = new ArrayList<>();
-        Imgproc.findContours(imgSegmentada, contornos, new Mat(), Imgproc.RETR_TREE, Imgproc.CHAIN_APPROX_SIMPLE, new Point(0, 0));
-        List<Moments> m = new ArrayList<>();
-        for (int i = 0; i < contornos.size(); i++) {
-            m.add(Imgproc.moments(contornos.get(i)));
-        }
-        List<MatOfDouble> momentosHu = new ArrayList<>();
-        for (int i = 0; i < m.size(); i++) {
-            MatOfDouble mHu = new MatOfDouble();
-            Imgproc.HuMoments(m.get(i), mHu);
-            momentosHu.add(mHu);
-        }
-        double[] mMedia = new double[7];
-        for (int i = 0; i < momentosHu.size(); i++) {
-            double[] moms = momentosHu.get(i).toArray();
-            for (int j = 0; j < moms.length; j++) {
-
-                mMedia[j] += moms[j];
-            }
-        }
-        for (int i = 0; i < mMedia.length; i++) {
-            mMedia[i] = mMedia[i] / momentosHu.size();
-        }
-
-        String registro = "";
-        for (int i = 0; i < mMedia.length; i++) {
-            registro += String.valueOf(mMedia[i]) + ";";
-        }
-        String formaGeometrica = "";
-
-        switch (opcao) {
-            case "Circulo": {
-                formaGeometrica = "1;0;0;0;0";
-                break;
-            }
-            case "Quadrado": {
-                formaGeometrica = "0;1;0;0;0";
-                break;
-            }
-            case "Retangulo": {
-                formaGeometrica = "0;0;1;0;0";
-                break;
-            }
-            case "Triângulo": {
-                formaGeometrica = "0;0;0;1;0";
-                break;
-            }
-            case "Hexagono": {
-                formaGeometrica = "0;0;0;0;1";
-                break;
-            }
-
-        }
-
-        registro += formaGeometrica;
-        String newLine = System.getProperty("line.separator");
-
-        this.writeTrainFile(registro + newLine);
     }
 
     private void writeTrainFile(String content) throws IOException {

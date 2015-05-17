@@ -29,7 +29,7 @@ public class RedeNeuralOpenCv implements IRedeNeural {
         this.pesoInicial = 0.8;
         this.camadas = new Mat(3, 1, CvType.CV_32SC1);
         this.camadas.put(0, 0, entradasRede);
-        this.camadas.put(1, 0, 20);
+        this.camadas.put(1, 0, 15);
         this.camadas.put(2, 0, saidasRede);
         this.mlp = new CvANN_MLP(this.camadas, CvANN_MLP.SIGMOID_SYM, 1, 1);
     }
